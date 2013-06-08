@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @event.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @event.description %>
+</p>
+
+<p>
+  <b>Max slots:</b>
+  <%= @event.max_slots %>
+</p>
+
+<p>
+  <b>Event date:</b>
+  <%= @event.event_date %>
+</p>
+
+<p>
+  <b>Signup expire:</b>
+  <%= @event.signup_expire %>
+</p>
+
+
+<%= link_to 'Sign up for this', "/events/#{@event.id}/signup" %>
+<%= link_to 'Back', events_path %>

@@ -1,0 +1,30 @@
+<h1>Listing events</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Max slots</th>
+    <th>Event date</th>
+    <th>Signup expire</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @events.each do |event| %>
+  <tr>
+    <td><%= event.title %></td>
+    <td><%= event.description %></td>
+    <td><%= event.max_slots %></td>
+    <td><%= event.event_date %></td>
+    <td><%= event.signup_expire %></td>
+    <td><%= link_to 'Show', event %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= will_paginate @events %>
+

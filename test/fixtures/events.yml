@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  description: MyString
+  max_slots: 1
+  event_date: 2013-06-07
+  signup_expire: 2013-06-07
+
+two:
+  title: MyString
+  description: MyString
+  max_slots: 1
+  event_date: 2013-06-07
+  signup_expire: 2013-06-07
