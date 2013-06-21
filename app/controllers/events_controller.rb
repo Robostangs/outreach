@@ -80,13 +80,15 @@ class EventsController < ApplicationController
   def signup
     @user = User.find_by_id(current_user.id)
     @event = Event.find_by_id(params['id'])
-    @signup = Signup.new( :user_id => @user.id, :event_id => @event.id )
-
-    if @signup.save
-      render :text => "User #{@user.email} signed up for event #{ @event.title }"
+    if @event.full? then
+      render :text => "signup failed; event is full"
     else
-      render :text => "fail"
+      @signup = Signup.new( :user_id => @user.id, :event_id => @event.id )
+      if @signup.save
+        render :text => "User #{@user.email} signed up for event #{ @event.title }"
+      else
+        render :text => "fail"
+      end
     end
-    
   end
 end

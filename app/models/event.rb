@@ -7,5 +7,9 @@ class Event < ActiveRecord::Base
   self.per_page = 10
 
   has_many :signups
-  has_many :users, :through => :signup
+  has_many :users, :through => :signups
+
+  def full?
+    self.signups.count >= self.max_slots
+  end
 end
