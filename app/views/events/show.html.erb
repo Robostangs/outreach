@@ -25,6 +25,12 @@
   <%= @event.signup_expire %>
 </p>
 
+<p>
+  <b>Currently signed up: </b>
+  <% @event.users.each do |user| %>
+    <%= user.email %>
+  <% end %>
+</p>
 
 <%= link_to 'Sign up for this', "/events/#{@event.id}/signup" %>
 <%= link_to 'Back', events_path %>
