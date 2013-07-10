@@ -14,12 +14,11 @@
 
 <% @events.each do |event| %>
   <tr>
-    <td><%= event.title %></td>
+    <td><%= link_to event.title, event %></td>
     <td><%= event.description %></td>
     <td><%= event.max_slots %></td>
     <td><%= event.event_date %></td>
     <td><%= event.signup_expire %></td>
-    <td><%= link_to 'Show', event %></td>
   </tr>
 <% end %>
 </table>

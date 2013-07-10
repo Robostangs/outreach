@@ -1,12 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>First name:</b>
+  <b>Name:</b>
   <%= @user.first_name %>
-</p>
-
-<p>
-  <b>Last name:</b>
   <%= @user.last_name %>
 </p>
 
@@ -14,6 +10,24 @@
   <b>Email:</b>
   <%= @user.email %>
 </p>
+
+<p>
+  <b>Events:</b>
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Event date</th>
+    </tr>
+
+  <% @user.events.each do |event| %>
+    <tr>
+      <td><%= link_to event.title, event %></td>
+      <td><%= event.description %></td>
+      <td><%= event.event_date %></td>
+    </tr>
+  <% end %>
+  </table>
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
