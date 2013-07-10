@@ -12,6 +12,9 @@
 </p>
 
 <p>
+<% if @user.events.empty? %>
+	<b> You are not currently signed up for any events. </b>
+<% else %>
   <b>Events:</b>
   <table>
     <tr>
@@ -22,13 +25,13 @@
 
   <% @user.events.each do |event| %>
     <tr>
-      <td><%= link_to event.title, event %></td>
+      <td class="event_title"><%= link_to event.title, event %></td>
       <td><%= event.description %></td>
-      <td><%= event.event_date %></td>
+      <td class="event_date"><%= event.event_date %></td>
     </tr>
   <% end %>
   </table>
+<% end %>
 
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<p>
+<%= link_to 'Edit My Info', edit_user_path(@user) %>

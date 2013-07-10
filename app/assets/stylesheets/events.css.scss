@@ -1,3 +1,19 @@
 // Place all the styles related to the events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+td,th {
+	text-align: center;
+	border: 1px solid #CCC;
+}
+
+td.event_title {
+	width: 100px;
+}
+
+td.event_date {
+	width: 120px;
+}
+
+td.event_count {
+	width: 80px;
+}
