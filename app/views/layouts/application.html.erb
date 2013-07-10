@@ -10,16 +10,16 @@
 
 	<div class ="container" >
 		<div class = "row" >
-			<div class = "span8">
+			<div class = "span10">
 				<% if user_signed_in? %>
 				  Signed in as
-				  <%= link_to(current_user.first_name, user_path(current_user), :method => :get) %>
+				  <%= link_to(current_user.first_name, user_path(current_user), :method => :get) %> |
 				  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
 				<%else%>
 				  <%= link_to('Sign in', new_user_session_path) %>
 				<% end %>
-				<p class="notice"><%= notice %></p>
-				<p class="alert"><%= alert %></p>
+				<p class="notice"><%= flash[:notice] %></p>
+				<p class="error"><%= flash[:error] %></p>
 				
 				<%= yield %>
 			</div>
