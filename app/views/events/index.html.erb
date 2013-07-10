@@ -1,4 +1,9 @@
 <h2>Events</h2>
+<% if not params[:page].nil? %>
+	Page <%= params[:page] %>
+<% else %>
+	Page 1
+<% end %>
 
 <table>
   <tr>
