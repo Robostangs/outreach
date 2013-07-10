@@ -3,7 +3,6 @@ EventThing::Application.routes.draw do
 
   resources :users
 
-
   root :to => 'events#index'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
