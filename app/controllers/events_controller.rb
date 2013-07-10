@@ -85,24 +85,30 @@ class EventsController < ApplicationController
     else
       @signup = Signup.new( :user_id => @user.id, :event_id => @event.id )
       if @signup.save
-        render :text => "User #{@user.email} signed up for event #{ @event.title }"
+        flash[:notice] = "User #{@user.email} signed up for event #{ @event.title }"
+        redirect_to event_path(@event)
       else
-        render :text => "fail"
+        flash[:error] = "Failed to sign up for #{ @event.title }"
+        redirect_to event_path(@event)
       end
     end
   end
 
   def signdown
+    #TODO check that it is not too late to remove user
     @user = User.find_by_id(current_user.id)
     @event = Event.find_by_id(params['id'])
     if not @event.users.include? current_user
-      render :text => "You are not signed up for this event."
+      flash[:error] = "You are not signed up for this event."
+      redirect_to event_path(@event)
     else
       @signup = Signup.find_by_user_id(current_user.id)
       if @signup.destroy
-        render :text => "User #{@user.email} removed from event #{ @event.title }"
+        flash[:notice] = "User #{@user.email} removed from event #{ @event.title }"
+        redirect_to event_path(@event)
       else
-        render :text => "fail"
+        flash[:error] = "Could not remove from event."
+        redirect_to event_path(@event)
       end
     end
   end
