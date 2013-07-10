@@ -21,11 +21,13 @@
 				<% end %>
 				<p class="notice"><%= flash[:notice] %></p>
 				<p class="error"><%= flash[:error] %></p>
-				
-				<%= yield %>
 			</div>
 		</div>
 	</div>
 
+	<br>
+	<div style="width: 1024px; margin-left:auto; margin-right:auto" >
+		<%= yield %>
+	</div>
 </body>
 </html>
