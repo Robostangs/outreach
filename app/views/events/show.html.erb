@@ -26,11 +26,19 @@
 </p>
 
 <p>
-  <b>Currently signed up: </b>
-  <% @event.users.each do |user| %>
-    <%= user.email %>
-  <% end %>
+	<% if @event.users.empty? %>
+		<b>No users are signed up yet.</b>
+	<% else %>
+		<b>Currently signed up: </b><p>
+  	<% @event.users.each do |user| %>
+  	  <%= user.email %>
+  	<% end %>
+	<% end %>
 </p>
 
-<%= link_to 'Sign up for this', "/events/#{@event.id}/signup" %>
+<% if @event.users.include? current_user %>
+	<%= link_to 'Remove myself from this event', "/events/#{@event.id}/signdown" %>
+<% else %>
+	<%= link_to 'Sign up for this', "/events/#{@event.id}/signup" %>
+<% end %>
 <%= link_to 'Back', events_path %>

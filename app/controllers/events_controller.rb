@@ -91,4 +91,19 @@ class EventsController < ApplicationController
       end
     end
   end
+
+  def signdown
+    @user = User.find_by_id(current_user.id)
+    @event = Event.find_by_id(params['id'])
+    if not @event.users.include? current_user
+      render :text => "You are not signed up for this event."
+    else
+      @signup = Signup.find_by_user_id(current_user.id)
+      if @signup.destroy
+        render :text => "User #{@user.email} removed from event #{ @event.title }"
+      else
+        render :text => "fail"
+      end
+    end
+  end
 end

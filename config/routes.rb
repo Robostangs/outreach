@@ -11,6 +11,7 @@ EventThing::Application.routes.draw do
   resources :events, :only => [:show, :index]
 
   match '/events/:id/signup' => 'events#signup'
+  match '/events/:id/signdown' => 'events#signdown'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
