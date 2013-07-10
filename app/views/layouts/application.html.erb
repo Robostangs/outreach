@@ -9,8 +9,8 @@
 <body>
 
 <% if user_signed_in? %>
-    Signed in as <%= current_user.first_name %>
-  <%= link_to('Your info', user_path(current_user), :method => :get) %>
+    Signed in as
+  <%= link_to(current_user.first_name, user_path(current_user), :method => :get) %>
     <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
 <%else%>
     <%= link_to('Sign in', new_user_session_path) %>
