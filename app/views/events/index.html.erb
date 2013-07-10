@@ -9,7 +9,7 @@
   <tr>
     <th>Title</th>
     <th>Description</th>
-    <th>Max slots</th>
+		<th>Spots Left</th>
     <th>Event date</th>
     <th>Signup expire</th>
   </tr>
@@ -18,7 +18,7 @@
   <tr>
     <td class="event_title"><%= link_to event.title, event %></td>
     <td><%= event.description %></td>
-    <td class="event_count"><%= event.max_slots %></td>
+		<td class="event_count"><%= event.slots_left %>/<%= event.max_slots %></td>
     <td class="event_date"><%= event.event_date %></td>
     <td class="event_date"><%= event.signup_expire %></td>
   </tr>

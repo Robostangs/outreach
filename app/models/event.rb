@@ -12,4 +12,8 @@ class Event < ActiveRecord::Base
   def full?
     self.signups.count >= self.max_slots
   end
+
+  def slots_left
+    self.max_slots - self.signups.count
+  end
 end
