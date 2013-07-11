@@ -80,8 +80,13 @@ class EventsController < ApplicationController
   def signup
     @user = User.find_by_id(current_user.id)
     @event = Event.find_by_id(params['id'])
-    if @event.full? then
-      render :text => "signup failed; event is full"
+
+    if @event.users.include? current_user
+      flash[:error] = "You are already signed up for this event."
+      redirect_to event_path(@event)
+    elsif @event.full? then
+      flash[:error] = "this is full."
+      redirect_to event_path(@event)
     else
       @signup = Signup.new( :user_id => @user.id, :event_id => @event.id )
       if @signup.save
