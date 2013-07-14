@@ -21,13 +21,19 @@
       <th>Title</th>
       <th>Description</th>
       <th>Event date</th>
+      <th>Confirmed?</th>
     </tr>
 
-  <% @user.events.each do |event| %>
+  <% @user.signups.each do |signup| %>
     <tr>
-      <td class="event_title"><%= link_to event.title, event %></td>
-      <td><%= event.description %></td>
-      <td class="event_date"><%= event.event_date %></td>
+      <td class="event_title"><%= link_to signup.event.title, signup.event %></td>
+      <td><%= signup.event.description %></td>
+      <td class="event_date"><%= signup.event.event_date %></td>
+      <% if signup.confirmed %>
+        <td> Yes </td>
+      <% else %>
+        <td> No </td>
+      <% end %>
     </tr>
   <% end %>
   </table>

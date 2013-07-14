@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130607220004) do
+ActiveRecord::Schema.define(:version => 20130714034257) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -50,8 +50,8 @@ ActiveRecord::Schema.define(:version => 20130607220004) do
     t.string   "title",                                   :null => false
     t.string   "description",                             :null => false
     t.integer  "max_slots",     :default => 5
-    t.date     "event_date",    :default => '2013-06-24'
-    t.date     "signup_expire", :default => '2013-06-17'
+    t.date     "event_date",    :default => '2013-07-27'
+    t.date     "signup_expire", :default => '2013-07-20'
     t.float    "credits",       :default => 2.0
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
@@ -60,8 +60,9 @@ ActiveRecord::Schema.define(:version => 20130607220004) do
   create_table "signups", :force => true do |t|
     t.integer  "user_id"
     t.integer  "event_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "confirmed",  :default => false
   end
 
   create_table "users", :force => true do |t|
