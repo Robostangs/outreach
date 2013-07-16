@@ -1,11 +1,15 @@
 ActiveAdmin.register Signup do
   index do 
-    column "Event Date", :event do |signup|
+    column "Event Date", :sortable => :event do |signup|
       Event.find(signup.event_id).event_date
     end
-    column :event
-    column :user
-    column :confirmed do |signup|
+    column "Event", :sortable => :event do |signup|
+      Event.find(signup.event_id).title
+    end
+    column "Member", :sortable => :user do |signup|
+      User.find(signup.user_id).full_name
+    end
+    column "Confirmed", :sortable => :confirmed do |signup|
       if signup.confirmed then "Yes"
       else "No"
       end
