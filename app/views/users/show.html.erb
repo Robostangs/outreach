@@ -11,6 +11,26 @@
 </p>
 
 <p>
+  <b> Confirmed Credits: </b>
+  <% confirmed_credits = 0.0 %>
+  <% @user.signups.each do |signup| %>
+    <% if signup.confirmed then confirmed_credits += signup.event.credits end %>
+  <% end %>
+  <%= confirmed_credits %>
+  <br>
+
+  <b> Pending Credits: </b>
+  <% pending_credits = 0.0 %>
+  <% @user.signups.each do |signup| %>
+    <% if not signup.confirmed then pending_credits += signup.event.credits end %>
+  <% end %>
+  <%= pending_credits %>
+  <br>
+
+  <b> Total Credits: </b>
+  <%= (pending_credits + confirmed_credits) %>
+  <br>
+<p>
 <% if @user.events.empty? %>
 	<b> You are not currently signed up for any events. </b>
 <% else %>
@@ -37,6 +57,7 @@
   <% end %>
   </table>
 <% end %>
+</p>
 
 <br>
 <%= link_to 'Edit My Info', edit_user_path(@user) %>
