@@ -29,8 +29,7 @@
 	<% else %>
 		<b>Currently signed up: </b><p>
   	<% @event.users.each do |user| %>
-  	  <%= user.first_name %>
-  	  <%= user.last_name %>
+  	  <%= user.full_name %>
       <br>
   	<% end %>
 	<% end %>
