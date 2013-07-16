@@ -1,4 +1,5 @@
 ActiveAdmin.register Signup do
+  config.clear_action_items!
   filter :event
   filter :user
   filter :confirmed
@@ -19,13 +20,21 @@ ActiveAdmin.register Signup do
       else "No"
       end
     end
-    default_actions
+    column :actions do |resource|
+      links = link_to I18n.t('active_admin.view'), resource_path(resource)
+    end
   end
 
   show do |signup|
     attributes_table do
       row :event do
         Event.find(signup.event_id) 
+      end
+      row :event_date do
+        Event.find(signup.event_id).event_date
+      end
+      row :description do
+        Event.find(signup.event_id).description
       end
       row :user do
         User.find(signup.user_id).full_name
