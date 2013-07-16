@@ -54,5 +54,13 @@ ActiveAdmin.register Signup do
     end
     redirect_to :back
   end
+
+  batch_action :unconfirm do |selection|
+    Signup.find(selection).each do |signup| 
+      signup.confirmed = false
+      signup.save
+    end
+    redirect_to :back
+  end
   
 end
