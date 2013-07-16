@@ -11,7 +11,6 @@
     <th>Description</th>
 		<th>Spots Left</th>
     <th>Event date</th>
-    <th>Signup expire</th>
   </tr>
 
 <% @events.each do |event| %>
@@ -20,7 +19,6 @@
     <td><%= event.description %></td>
 		<td class="event_count"><%= event.slots_left %>/<%= event.max_slots %></td>
     <td class="event_date"><%= event.event_date %></td>
-    <td class="event_date"><%= event.signup_expire %></td>
   </tr>
 <% end %>
 </table>

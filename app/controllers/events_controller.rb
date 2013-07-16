@@ -105,7 +105,7 @@ class EventsController < ApplicationController
     if not @event.users.include? current_user
       flash[:error] = "You are not signed up for this event."
       redirect_to event_path(@event)
-    elsif (Time.now <=> @event.event_date) == 1
+    elsif (Time.now <=> @event.deadline) == 1
       flash[:error] = "Can't remove you; past signup deadline"
       redirect_to event_path(@event)
     else
