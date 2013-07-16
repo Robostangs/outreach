@@ -1,5 +1,10 @@
 ActiveAdmin.register Signup do
+  filter :event
+  filter :user
+  filter :confirmed
+
   index do 
+    selectable_column
     column "Event Date", :sortable => :event do |signup|
       Event.find(signup.event_id).event_date
     end
@@ -31,7 +36,14 @@ ActiveAdmin.register Signup do
         end
       end
     end
+  end
 
+  batch_action :confirm do |selection|
+    Signup.find(selection).each do |signup| 
+      signup.confirmed = true
+      signup.save
+    end
+    redirect_to :back
   end
   
 end
