@@ -19,6 +19,16 @@
 </p>
 
 <p>
+  <b>Start time:</b>
+  <%= @event.start_time.strftime("%l:%m %p") %>
+</p>
+
+<p>
+  <b>End time:</b>
+  <%= @event.end_time.strftime("%l:%m %p") %>
+</p>
+
+<p>
   <b>Back out deadline:</b>
   <%= @event.deadline %>
 </p>

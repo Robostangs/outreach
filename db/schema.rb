@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130714035618) do
+ActiveRecord::Schema.define(:version => 20130722165912) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -47,14 +47,16 @@ ActiveRecord::Schema.define(:version => 20130714035618) do
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
   create_table "events", :force => true do |t|
-    t.string   "title",                                 :null => false
-    t.string   "description",                           :null => false
+    t.string   "title",                                          :null => false
+    t.string   "description",                                    :null => false
     t.integer  "max_slots",   :default => 5
-    t.date     "event_date",  :default => '2013-07-27'
-    t.date     "deadline",    :default => '2013-07-20'
+    t.date     "event_date",  :default => '2013-08-05'
+    t.date     "deadline",    :default => '2013-07-29'
     t.float    "credits",     :default => 2.0
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+    t.time     "start_time",  :default => '2000-01-01 17:06:27'
+    t.time     "end_time",    :default => '2000-01-01 19:06:27'
   end
 
   create_table "signups", :force => true do |t|
