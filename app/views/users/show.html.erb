@@ -14,7 +14,7 @@
   <b> Confirmed Credits: </b>
   <% confirmed_credits = 0.0 %>
   <% @user.signups.each do |signup| %>
-    <% if signup.confirmed then confirmed_credits += signup.event.credits end %>
+    <% if signup.confirmed then confirmed_credits += signup.credits_earned end %>
   <% end %>
   <%= confirmed_credits %>
   <br>
@@ -22,7 +22,7 @@
   <b> Pending Credits: </b>
   <% pending_credits = 0.0 %>
   <% @user.signups.each do |signup| %>
-    <% if not signup.confirmed then pending_credits += signup.event.credits end %>
+    <% if not signup.confirmed then pending_credits += signup.credits_earned end %>
   <% end %>
   <%= pending_credits %>
   <br>
@@ -50,8 +50,8 @@
       <td class="event_title"><%= link_to signup.event.title, signup.event %></td>
       <td><%= signup.event.description %></td>
       <td class="event_date"><%= signup.event.event_date %></td>
-      <td><%= signup.event.start_time %></td>
-      <td><%= signup.event.end_time %></td>
+      <td><%= signup.event.start_time.strftime("%l:%m %p") %></td>
+      <td><%= signup.event.end_time.strftime("%l:%m %p") %></td>
       <% if signup.confirmed %>
         <td> Yes </td>
       <% else %>
