@@ -1,5 +1,5 @@
 ActiveAdmin.register Signup do
-  config.clear_action_items!
+  #config.clear_action_items!
   filter :event
   filter :user
   filter :confirmed
@@ -20,9 +20,7 @@ ActiveAdmin.register Signup do
       else "No"
       end
     end
-    column :actions do |resource|
-      links = link_to I18n.t('active_admin.view'), resource_path(resource)
-    end
+    default_actions
   end
 
   show do |signup|
