@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
   attr_accessible :description, :event_date, :max_slots, :deadline, :title, :credits, :start_time, :end_time
 
   scope :desc, order("events.created_at DESC")
-  scope :active, lambda { where("signup_expire > ?", Time.now) }
+  scope :active, lambda { where("deadline > ?", Time.now) }
 
   self.per_page = 10
 
