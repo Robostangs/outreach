@@ -1,5 +1,4 @@
 ActiveAdmin.register Signup do
-  #config.clear_action_items!
   filter :event
   filter :user
   filter :confirmed
@@ -7,14 +6,13 @@ ActiveAdmin.register Signup do
   index do 
     selectable_column
     column "Event Date", :sortable => :event do |signup|
-      Event.find(signup.event_id).event_date
+      signup.event.event_date
     end
-    column "Event", :sortable => :event do |signup|
-      Event.find(signup.event_id).title
-    end
+    column :event, :sortable => :event
     column "Member", :sortable => :user do |signup|
-      User.find(signup.user_id).full_name
+      signup.user.full_name
     end
+    column :credits_earned
     column "Confirmed", :sortable => :confirmed do |signup|
       if signup.confirmed then "Yes"
       else "No"
@@ -26,17 +24,18 @@ ActiveAdmin.register Signup do
   show do |signup|
     attributes_table do
       row :event do
-        Event.find(signup.event_id) 
+        signup.event
       end
       row :event_date do
-        Event.find(signup.event_id).event_date
+        signup.event.event_date
       end
       row :description do
-        Event.find(signup.event_id).description
+        signup.event.description
       end
       row :user do
-        User.find(signup.user_id).full_name
+        signup.user.full_name
       end
+      row :credits_earned
       row :confirmed do
         if signup.confirmed then "Yes"
         else "No"
