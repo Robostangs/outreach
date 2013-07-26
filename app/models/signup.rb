@@ -9,4 +9,8 @@ class Signup < ActiveRecord::Base
   def set_default_credits
     self.credits_earned = self.event.credits
   end
+
+  def name
+    self.event.title + ': ' + self.user.full_name
+  end
 end
