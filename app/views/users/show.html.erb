@@ -11,6 +11,11 @@
 </p>
 
 <p>
+  <b>ID:</b>
+  <%= @user.school_id %>
+</p>
+
+<p>
   <b> Confirmed Credits: </b>
   <% confirmed_credits = 0.0 %>
   <% @user.signups.each do |signup| %>
