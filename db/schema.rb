@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130722174836) do
+ActiveRecord::Schema.define(:version => 20130822184035) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -57,6 +57,16 @@ ActiveRecord::Schema.define(:version => 20130722174836) do
     t.datetime "updated_at",                                     :null => false
     t.time     "start_time",  :default => '2000-01-01 17:06:27'
     t.time     "end_time",    :default => '2000-01-01 19:06:27'
+  end
+
+  create_table "meetings", :force => true do |t|
+    t.date     "meeting_date",                                :null => false
+    t.time     "start_time",                                  :null => false
+    t.time     "end_time",                                    :null => false
+    t.string   "description",  :default => "General meeting"
+    t.boolean  "mandatory",    :default => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
   end
 
   create_table "signups", :force => true do |t|

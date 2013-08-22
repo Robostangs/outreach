@@ -1,4 +1,7 @@
 EventThing::Application.routes.draw do
+  resources :meetings
+
+
   devise_for :users
 
   resources :users, :except => [:index]

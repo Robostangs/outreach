@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  meeting_date: 2013-08-22
+  start_time: 2013-08-22 14:40:35
+  end_time: 2013-08-22 14:40:35
+  description: MyString
+  mandatory: false
+
+two:
+  meeting_date: 2013-08-22
+  start_time: 2013-08-22 14:40:35
+  end_time: 2013-08-22 14:40:35
+  description: MyString
+  mandatory: false
