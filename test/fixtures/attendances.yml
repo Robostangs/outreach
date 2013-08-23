@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  present: false
+  in_time: 2013-08-23 15:00:03
+  out_time: 2013-08-23 15:00:03
+
+two:
+  present: false
+  in_time: 2013-08-23 15:00:03
+  out_time: 2013-08-23 15:00:03
