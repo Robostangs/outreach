@@ -1,31 +1,22 @@
-<h1>Listing meetings</h1>
+<h1>Meetings</h1>
 
 <table>
   <tr>
     <th>Meeting date</th>
-    <th>Start time</th>
-    <th>End time</th>
     <th>Description</th>
-    <th>Mandatory</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Mandatory?</th>
+    <th>Did You Attend?</th>
   </tr>
 
 <% @meetings.each do |meeting| %>
   <tr>
     <td><%= meeting.meeting_date %></td>
-    <td><%= meeting.start_time %></td>
-    <td><%= meeting.end_time %></td>
     <td><%= meeting.description %></td>
-    <td><%= meeting.mandatory %></td>
-    <td><%= link_to 'Show', meeting %></td>
-    <td><%= link_to 'Edit', edit_meeting_path(meeting) %></td>
-    <td><%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<td><%= if meeting.mandatory then 'Yes' else 'No' end %></td>
+		<td><%= if (@user.attendances.find_by meeting_id: meeting.id).present then 'Yes' else 'No' end %></td> 
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Meeting', new_meeting_path %>
