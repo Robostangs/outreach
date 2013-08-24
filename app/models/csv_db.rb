@@ -25,7 +25,7 @@ class CsvDb
 					iterator += 1
 				elsif iterator == 1
 					# set meeting date
-					new_meeting.send "meeting_date=", row[csv_cols[:date]]
+					new_meeting.send "meeting_date=", Date.parse(row[csv_cols[:date]])
 					new_meeting.save
 
 					User.all.each do |user|
