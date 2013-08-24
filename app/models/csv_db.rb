@@ -35,8 +35,8 @@ class CsvDb
 					end
 
 					# this row contains user data as well, process
-					user = User.find_by school_id: row[csv_cols[:school_id]]
-					attend = user.attendances.find_by meeting_id: new_meeting.id
+					user = User.find_by_school_id(row[csv_cols[:school_id]])
+					attend = user.attendances.find_by_meeting_id(new_meeting.id)
 					attend.present = true
 					attend.in_time = Time.zone.parse(row[csv_cols[:in_time]])
 					attend.out_time = Time.zone.parse(row[csv_cols[:out_time]])
