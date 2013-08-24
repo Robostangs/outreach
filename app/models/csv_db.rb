@@ -15,10 +15,10 @@ class CsvDb
 					# column headers row
 					row.each_with_index do |col, i|
 						# identify relevant database columns
-						if col.upcase.include? 'ID' then csv_cols.add{ :school_id => i } 
-						elsif col.upcase.include? 'IN TIME' then csv_cols.add { :in_time => i }
-						elsif col.upcase.include? 'OUT TIME' then csv_cols.add { :out_time => i }
-						elsif col.upcase.include? 'DATE' then csv_cols.add { :date => i }
+						if col.upcase.include? 'ID' then csv_cols[:school_id] = i
+						elsif col.upcase.include? 'IN TIME' then csv_cols[:in_time] = i
+						elsif col.upcase.include? 'OUT TIME' then csv_cols[:out_time] = i
+						elsif col.upcase.include? 'DATE' then csv_cols[:date] = i
 						end
 					end
 
