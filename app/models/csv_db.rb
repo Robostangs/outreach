@@ -22,7 +22,6 @@ class CsvDb
 						end
 					end
 
-					iterator += 1
 				elsif iterator == 1
 					# set meeting date
 					new_meeting.send "meeting_date=", Date.parse(row[csv_cols[:date]])
@@ -50,6 +49,7 @@ class CsvDb
 					attend.in_time = Time.zone.parse(row[csv_cols[:in_time]])
 					attend.out_time = Time.zone.parse(row[csv_cols[:out_time]])
 				end
+				iterator += 1
 			end
 		end
 	end
