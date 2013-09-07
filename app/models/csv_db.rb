@@ -21,7 +21,7 @@ class CsvDb
 						elsif col.upcase.include? 'DATE' then csv_cols[:date] = i
 						end
 					end
-
+				iterator += 1
 				elsif iterator == 1
 					# set meeting date
 					new_meeting.send "meeting_date=", Date.parse(row[csv_cols[:date]])
@@ -43,13 +43,12 @@ class CsvDb
 					iterator += 1
 				else
 					# process user data
-					user = User.find_by school_id: row[csv_cols[:school_id]]
-					attend = user.attendances.find_by meeting_id: new_meeting.id
+					user = User.find_by_school_id(row[csv_cols[:school_id]])
+					attend = user.attendances.find_by_meeting_id(new_meeting.id)
 					attend.present = true
 					attend.in_time = Time.zone.parse(row[csv_cols[:in_time]])
 					attend.out_time = Time.zone.parse(row[csv_cols[:out_time]])
 				end
-				iterator += 1
 			end
 		end
 	end
