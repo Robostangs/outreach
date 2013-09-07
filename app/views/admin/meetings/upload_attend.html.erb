@@ -1,0 +1,17 @@
+<%= form_for :dump, :url=>{:action=>"import_attend"}, :html => { :multipart => true} do |f| %>
+	<table>
+	<tr>
+		<td>
+			<%= f.label "Select a CSV file" %>
+		</td>
+		<td>
+			<%= f.file_field :file %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<%= f.submit 'Submit' %>
+		</td>
+	</tr>
+</table>
+<% end %>
