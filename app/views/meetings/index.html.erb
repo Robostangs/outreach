@@ -18,7 +18,7 @@
     <td><%= meeting.meeting_date %></td>
     <td><%= meeting.description %></td>
 		<td><%= if meeting.mandatory then 'Yes' else 'No' end %></td>
-		<td><%= if (@user.attendances.find_by meeting_id: meeting.id).present then 'Yes' else 'No' end %></td> 
+		<td><%= if (current_user.attendances.find_by_meeting_id meeting.id).present then 'Yes' else 'No' end %></td> 
   </tr>
 <% end %>
 </table>

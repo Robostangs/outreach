@@ -5,6 +5,14 @@ class Meeting < ActiveRecord::Base
 
 	self.per_page = 10
 
-	has_many :attendances
+	has_many :attendances, :dependent => :delete_all
 	has_many :users, :through => :attendances
+
+	def name
+		'Meeting: ' + self.meeting_date.strftime('%A, %B %-d')
+	end
+
+	def day_of_the_week
+		self.meeting_date.strftime('%A')
+	end
 end

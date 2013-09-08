@@ -1,5 +1,5 @@
 class Attendance < ActiveRecord::Base
-  attr_accessible :in_time, :out_time, :present, :meeting_id, :event_id
+  attr_accessible :in_time, :out_time, :present, :meeting_id, :user_id
 
 	belongs_to :user
 	belongs_to :event
