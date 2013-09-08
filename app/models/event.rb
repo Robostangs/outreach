@@ -16,4 +16,12 @@ class Event < ActiveRecord::Base
   def slots_left
     self.max_slots - self.signups.count
   end
+
+	def nice_start_time
+		self.start_time.strftime("%l:%m %p")
+	end
+
+	def nice_end_time
+		self.end_time.strftime("%l:%m %p")
+	end
 end
