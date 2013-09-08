@@ -5,10 +5,10 @@ ActiveAdmin.register Signup do
 
   index do 
     selectable_column
+    column :event, :sortable => :event
     column "Event Date", :sortable => :event do |signup|
       signup.event.event_date
     end
-    column :event, :sortable => :event
     column "Member", :sortable => :user do |signup|
       signup.user.full_name
     end
