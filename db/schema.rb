@@ -60,13 +60,13 @@ ActiveRecord::Schema.define(:version => 20130823201428) do
     t.string   "title",                                          :null => false
     t.string   "description",                                    :null => false
     t.integer  "max_slots",   :default => 5
-    t.date     "event_date",  :default => '2013-08-05'
-    t.date     "deadline",    :default => '2013-07-29'
+    t.date     "event_date",  :default => '2013-09-23'
+    t.date     "deadline",    :default => '2013-09-16'
     t.float    "credits",     :default => 2.0
     t.datetime "created_at",                                     :null => false
     t.datetime "updated_at",                                     :null => false
-    t.time     "start_time",  :default => '2000-01-01 17:06:27'
-    t.time     "end_time",    :default => '2000-01-01 19:06:27'
+    t.time     "start_time",  :default => '2000-01-01 01:24:32'
+    t.time     "end_time",    :default => '2000-01-01 03:24:32'
   end
 
   create_table "meetings", :force => true do |t|
