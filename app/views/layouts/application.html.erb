@@ -14,9 +14,9 @@
 				<% if user_signed_in? %>
 				  Signed in as
 				  <%= link_to(current_user.full_name, user_path(current_user), :method => :get) %> |
-					<%= link_to('Logout', destroy_user_session_path, :method => :delete) %> |
 					<%= link_to('Events', events_path) %> |
-					<%= link_to('Meetings', meetings_path) %>
+					<%= link_to('Meetings', meetings_path) %> |
+					<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
 				<%else%>
 				  <%= link_to('Sign in', new_user_session_path) %>
 				<% end %>
