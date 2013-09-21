@@ -1,4 +1,5 @@
 class Meeting < ActiveRecord::Base
+	#TODO: meetings have times???
   attr_accessible :description, :mandatory, :meeting_date
 
 	scope :desc, order("meetings.created_at DESC")

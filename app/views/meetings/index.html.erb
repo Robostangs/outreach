@@ -15,10 +15,10 @@
 
 <% @meetings.each do |meeting| %>
   <tr>
-    <td><%= meeting.meeting_date %></td>
-    <td><%= meeting.description %></td>
-		<td><%= if meeting.mandatory then 'Yes' else 'No' end %></td>
-		<td><%= if (current_user.attendances.find_by_meeting_id meeting.id).present then 'Yes' else 'No' end %></td> 
+    <td class="meeting_date"><%= meeting.meeting_date %></td>
+    <td class="meeting_description"><%= meeting.description %></td>
+		<td class="meeting_mandatory"><%= if meeting.mandatory then 'Yes' else 'No' end %></td>
+		<td class="meeting_attend"><%= if (current_user.attendances.find_by_meeting_id meeting.id).present then 'Yes' else 'No' end %></td> 
   </tr>
 <% end %>
 </table>
