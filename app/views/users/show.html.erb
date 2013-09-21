@@ -43,20 +43,20 @@
   <table>
     <tr>
       <th>Title</th>
-      <th>Description</th>
       <th>Date</th>
       <th>Start Time</th>
       <th>End Time</th>
+      <th>Credits</th>
       <th>Confirmed?</th>
     </tr>
 
   <% @user.signups.each do |signup| %>
     <tr>
       <td class="event_title"><%= link_to signup.event.title, signup.event %></td>
-      <td><%= signup.event.description %></td>
       <td class="event_date"><%= signup.event.event_date %></td>
-      <td><%= signup.event.start_time.strftime("%l:%m %p") %></td>
-      <td><%= signup.event.end_time.strftime("%l:%m %p") %></td>
+      <td class="event_time"><%= signup.event.start_time.strftime("%l:%m %p") %></td>
+      <td class="event_time"><%= signup.event.end_time.strftime("%l:%m %p") %></td>
+			<td class="event_credits"><%= signup.credits %></td>
       <% if signup.confirmed %>
         <td> Yes </td>
       <% else %>

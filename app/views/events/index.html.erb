@@ -8,23 +8,21 @@
 <table>
   <tr>
     <th>Title</th>
-    <th>Description</th>
-    <th>Credits</th>
-		<th>Spots Left</th>
     <th>Event Date</th>
     <th>Start Time</th>
     <th>End Time</th>
+    <th>Credits</th>
+		<th>Spots Left</th>
   </tr>
 
 <% @events.each do |event| %>
   <tr>
     <td class="event_title"><%= link_to event.title, event %></td>
-    <td><%= event.description %></td>
-    <td><%= event.credits %>
-	<td class="event_count"><%= event.slots_left %>/<%= event.max_slots %></td>
     <td class="event_date"><%= event.event_date %></td>
-    <td><%= event.start_time.strftime("%l:%m %p") %></td>
-    <td><%= event.end_time.strftime("%l:%m %p") %></td>
+    <td class="event_time"><%= event.start_time.strftime("%l:%m %p") %></td>
+		<td class="event_time"><%= event.end_time.strftime("%l:%m %p") %></td>
+    <td class="event_credits"><%= event.credits %>
+		<td class="event_count"><%= event.slots_left %>/<%= event.max_slots %></td>
   </tr>
 <% end %>
 </table>
