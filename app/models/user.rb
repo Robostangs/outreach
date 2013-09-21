@@ -17,4 +17,16 @@ class User < ActiveRecord::Base
   def full_name
     self.first_name + " " + self.last_name
   end
+
+	def meeting_attendance
+		present_at = 0
+		self.attendances.each { |attend| if attend.present then present_at += 1 end }
+		(present_at / self.attendances.count.to_f) * 100
+	end
+
+	def missed_mandatory_meetings
+		missed = 0
+		self.attendances.each { |attend| if attend.mandatory and not attend.present then missed += 1 end }
+		missed
+	end
 end

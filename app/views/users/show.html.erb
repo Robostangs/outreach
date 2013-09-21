@@ -1,6 +1,3 @@
-<!-- TODO: display attendance statistics -->
-<p id="notice"><%= notice %></p>
-
 <p>
   <b>Name:</b>
   <%= @user.full_name %>
@@ -36,6 +33,16 @@
   <b> Total Credits: </b>
   <%= (pending_credits + confirmed_credits) %>
   <br>
+<p>
+
+<p> 
+	<b> Meeting Attendance: </b>
+	<%= @user.meeting_attendance %> %
+	<br>
+
+	<b> Number of Mandatory Meetings Missed: </b>
+	<%= @user.missed_mandatory_meetings %>
+	<br>
 <p>
 <% if @user.events.empty? %>
 	<b> You are not currently signed up for any events. </b>
