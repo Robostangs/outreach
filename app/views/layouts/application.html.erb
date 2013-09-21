@@ -21,11 +21,12 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
-			<a class="brand" href="#">Robostangs</a>
+			<a class="brand">Robostangs</a>
 			<div class="nav-collapse">
 				<ul class="nav">
 					<% if user_signed_in? %>
 						<li><%= link_to("My Info", user_path(current_user), :method => :get) %></li>
+						<!-- TODO: show number of new events -->
 						<li><%= link_to("Outreach Events", events_path) %></li>
 						<li><%= link_to("Meetings", meetings_path)%></li>
 						<li><%= link_to("Logout", destroy_user_session_path, :method => :delete) %></li>
