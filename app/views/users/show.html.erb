@@ -40,31 +40,39 @@
 	<b> You are not currently signed up for any events. </b>
 <% else %>
   <b>Events:</b>
-  <table>
-    <tr>
-      <th>Title</th>
-      <th>Date</th>
-      <th>Start Time</th>
-      <th>End Time</th>
-      <th>Credits</th>
-      <th>Confirmed?</th>
-    </tr>
-
-  <% @user.signups.each do |signup| %>
-    <tr>
-      <td class="event_title"><%= link_to signup.event.title, signup.event %></td>
-      <td class="event_date"><%= signup.event.event_date %></td>
-      <td class="event_time"><%= signup.event.start_time.strftime("%l:%m %p") %></td>
-      <td class="event_time"><%= signup.event.end_time.strftime("%l:%m %p") %></td>
-			<td class="event_credits"><%= signup.credits %></td>
-      <% if signup.confirmed %>
-        <td> Yes </td>
-      <% else %>
-        <td> No </td>
-      <% end %>
-    </tr>
-  <% end %>
-  </table>
+	<style>
+		.table {	table-layout: fixed; }
+		.table th, .table td { text-align: center; }
+		.table_nonfluid { width: 500px; }
+	</style>
+	<table class="table table-condensed table-bordered table-responsive table-nonfluid">
+		<thead>
+			<tr>
+				<th style="width: 35%">Title</th>
+				<th style="width: 20%">Event Date</th>
+				<th style="width: 15%">Start Time</th>
+				<th style="width: 15%">End Time</th>
+				<th style="width: 12%">Credits</th>
+				<th style="width: 13%">Confirmed?</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @user.signups.each do |signup| %>
+				<tr>
+					<td class="event_title"><%= link_to signup.event.title, signup.event %></td>
+					<td class="event_date"><%= signup.event.event_date %></td>
+					<td class="event_time"><%= signup.event.start_time.strftime("%l:%m %p") %></td>
+					<td class="event_time"><%= signup.event.end_time.strftime("%l:%m %p") %></td>
+					<td class="event_credits"><%= signup.credits_earned %></td>
+					<% if signup.confirmed %>
+						<td> Yes </td>
+					<% else %>
+						<td> No </td>
+					<% end %>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
 <% end %>
 </p>
 
