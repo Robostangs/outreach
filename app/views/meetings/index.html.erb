@@ -1,26 +1,31 @@
-<h1>Meetings</h1>
-<% if not params[:page].nil? %>
-	Page <%= params[:page] %>
-<% else %>
-	Page 1
-<% end %>
-
-<table>
-  <tr>
-    <th>Meeting date</th>
-    <th>Description</th>
-    <th>Mandatory?</th>
-    <th>Did You Attend?</th>
-  </tr>
-
-<% @meetings.each do |meeting| %>
-  <tr>
-    <td class="meeting_date"><%= meeting.meeting_date %></td>
-    <td class="meeting_description"><%= meeting.description %></td>
-		<td class="meeting_mandatory"><%= if meeting.mandatory then 'Yes' else 'No' end %></td>
-		<td class="meeting_attend"><%= if (current_user.attendances.find_by_meeting_id meeting.id).present then 'Yes' else 'No' end %></td> 
-  </tr>
-<% end %>
+<h2>Meetings</h2>
+<ul class="pagination">
+	<%= will_paginate @events, renderer: BootstrapPagination::Rails, bootstrap: 3 %>
+</ul>
+<style>
+	.table {	table-layout: fixed; }
+	.table th, .table td { text-align: center; }
+	.table_nonfluid { width: auto; }
+</style>
+<table class="table table-condensed table-bordered table-responsive table-nonfluid">
+	<thead>
+		<tr>
+			<th>Meeting date</th>
+			<th>Description</th>
+			<th>Mandatory?</th>
+			<th>Did You Attend?</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @meetings.each do |meeting| %>
+			<tr>
+			<td><%= meeting.meeting_date %></td>
+			<td><%= meeting.description %></td>
+			<td><%= if meeting.mandatory then 'Yes' else 'No' end %></td>
+				<td><%= if (current_user.attendances.find_by_meeting_id meeting.id).present then 'Yes' else 'No' end %></td> 
+			</tr>
+		<% end %>
+	</tbody>
 </table>
 
 <br />
