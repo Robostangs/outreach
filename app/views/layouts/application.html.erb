@@ -6,6 +6,12 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
+<style>
+	body {
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+</style>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-inner">
@@ -40,7 +46,7 @@
 		</div>
 	</div>
 </div>
-	<div style="width: 1024px; margin-left:auto; margin-right:auto" >
+	<div style="margin-left:auto; margin-right:auto" >
 		<%= yield %>
 	</div>
 

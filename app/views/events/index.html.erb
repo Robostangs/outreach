@@ -2,26 +2,34 @@
 <ul class="pagination">
 	<%= will_paginate @events, renderer: BootstrapPagination::Rails, bootstrap: 3 %>
 </ul>
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Event Date</th>
-    <th>Start Time</th>
-    <th>End Time</th>
-    <th>Credits</th>
-		<th>Spots Left</th>
-  </tr>
-
-<% @events.each do |event| %>
-  <tr>
-    <td class="event_title"><%= link_to event.title, event %></td>
-    <td class="event_date"><%= event.event_date %></td>
-    <td class="event_time"><%= event.start_time.strftime("%l:%m %p") %></td>
-		<td class="event_time"><%= event.end_time.strftime("%l:%m %p") %></td>
-    <td class="event_credits"><%= event.credits %>
-		<td class="event_count"><%= event.slots_left %>/<%= event.max_slots %></td>
-  </tr>
-<% end %>
+<style>
+	.table {	table-layout: fixed; }
+	.table th, .table td { text-align: center; }
+	.table_nonfluid { width: auto; }
+</style>
+<table class="table table-condensed table-bordered table-responsive table-nonfluid">
+	<thead>
+		<tr>
+			<th style="width: 35%">Title</th>
+			<th style="width: 20%">Event Date</th>
+			<th style="width: 15%">Start Time</th>
+			<th style="width: 15%">End Time</th>
+			<th style="width: 12%">Credits</th>
+			<th style="width: 13%">Spots Left</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @events.each do |event| %>
+			<tr>
+			<td><%= link_to event.title, event %></td>
+			<td><%= event.event_date %></td>
+			<td><%= event.start_time.strftime("%l:%m %p") %></td>
+			<td><%= event.end_time.strftime("%l:%m %p") %></td>
+			<td><%= event.credits %>
+			<td><%= event.slots_left %>/<%= event.max_slots %></td>
+			</tr>
+		<% end %>
+	</tbody>
 </table>
 
 <br />
