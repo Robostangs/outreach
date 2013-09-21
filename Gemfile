@@ -23,6 +23,8 @@ gem 'jquery-rails', '2.3.0'
 
 gem 'faker'
 
+gem 'populator'
+
 gem 'activeadmin'
 
 gem 'will_paginate'
@@ -30,3 +32,5 @@ gem 'will_paginate'
 gem 'devise'
 
 gem 'less-rails-bootstrap'
+
+gem 'will_paginate-bootstrap'

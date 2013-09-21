@@ -1,10 +1,7 @@
 <h2>Events</h2>
-<% if not params[:page].nil? %>
-	Page <%= params[:page] %>
-<% else %>
-	Page 1
-<% end %>
-
+<ul class="pagination">
+	<%= will_paginate @events, renderer: BootstrapPagination::Rails, bootstrap: 3 %>
+</ul>
 <table>
   <tr>
     <th>Title</th>
@@ -28,6 +25,4 @@
 </table>
 
 <br />
-
-<%= will_paginate @events %>
 
