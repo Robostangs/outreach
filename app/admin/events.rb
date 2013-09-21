@@ -1,11 +1,9 @@
 ActiveAdmin.register Event do
 	filter :title
-	filter :description
 	filter :event_date
 
 	index do 
 		column :title
-		column :description
 		column :event_date
 		column "Start time", :sortable => :start_time do |event|
 			event.nice_start_time
