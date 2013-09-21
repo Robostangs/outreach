@@ -7,26 +7,39 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-	<div class ="container" >
-		<div class = "row" >
-			<div class = "span10">
-				<% if user_signed_in? %>
-				  Signed in as
-				  <%= link_to(current_user.full_name, user_path(current_user), :method => :get) %> |
-					<%= link_to('Events', events_path) %> |
-					<%= link_to('Meetings', meetings_path) %> |
-					<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-				<%else%>
-				  <%= link_to('Sign in', new_user_session_path) %>
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+			<a class="brand" href="#">Robostangs</a>
+			<div class="nav-collapse">
+				<ul class="nav">
+					<% if user_signed_in? %>
+						<li><%= link_to("My Info", user_path(current_user), :method => :get) %></li>
+						<li><%= link_to("Outreach Events", events_path) %></li>
+						<li><%= link_to("Meetings", meetings_path)%></li>
+						<li><%= link_to("Logout", destroy_user_session_path, :method => :delete) %></li>
+				<% else %>
+					<li><%= link_to("Sign in", new_user_session_path) %></li>
 				<% end %>
-				<p class="notice"><%= flash[:notice] %></p>
-				<p class="error"><%= flash[:error] %></p>
+				</ul>
 			</div>
 		</div>
 	</div>
-
-	<br>
+</div>
+<div class ="container" >
+	<div class = "row" >
+		<div class = "span10">
+			<br>
+			<p class="notice"><%= flash[:notice] %></p>
+			<p class="error"><%= flash[:error] %></p>
+		</div>
+	</div>
+</div>
 	<div style="width: 1024px; margin-left:auto; margin-right:auto" >
 		<%= yield %>
 	</div>
