@@ -31,7 +31,7 @@
 						<li><%= link_to("Meetings", meetings_path)%></li>
 						<li><%= link_to("Logout", destroy_user_session_path, :method => :delete) %></li>
 				<% else %>
-					<li><%= link_to("Sign in", new_user_session_path) %></li>
+					<li><%= link_to("Sign In", new_user_session_path) %></li>
 				<% end %>
 				</ul>
 			</div>
@@ -41,9 +41,7 @@
 <div class ="container" >
 	<div class = "row" >
 		<div class = "span10">
-			<br>
-			<p class="notice"><%= flash[:notice] %></p>
-			<p class="error"><%= flash[:error] %></p>
+			<%= render partial: "shared/flash_messages", flash: flash %>
 		</div>
 	</div>
 </div>
