@@ -4,5 +4,18 @@ body {
 	padding-top: 40px;
 }
 
+.form-vertical label, .form-inputs label {
+	font-weight: bold; 
+	margin-left: 35px;
+}
+
+.form-inputs input {
+	margin-left: 30px;
+}
+
+.btn {
+	font-weight: bold; 
+}
+
 @import "twitter/bootstrap/responsive";
 
