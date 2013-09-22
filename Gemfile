@@ -34,3 +34,5 @@ gem 'devise'
 gem 'less-rails-bootstrap'
 
 gem 'will_paginate-bootstrap'
+
+gem 'simple_form'
