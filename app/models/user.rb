@@ -9,10 +9,18 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :first_name, :last_name, :school_id
 
+	before_create :correct_school_id
+
+	validates :school_id, :uniqueness => true
+
   has_many :signups
   has_many :events, :through => :signups
 	has_many :attendances
 	has_many :meetings, :through => :attendances
+
+	def correct_school_id
+		if self.school_id[0] != 'S' then self.school_id = 'S' + self.school_id end
+	end
 
   def full_name
     self.first_name + " " + self.last_name
