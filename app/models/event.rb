@@ -8,7 +8,8 @@ class Event < ActiveRecord::Base
 
   has_many :signups
   has_many :users, :through => :signups
-
+  validates :event_date, :max_slots, :deadline, :title, :credits, :presence => true
+  validates :max_slots, :credits, :numericality => true
   def full?
     self.signups.count >= self.max_slots
   end
@@ -24,4 +25,5 @@ class Event < ActiveRecord::Base
 	def nice_end_time
 		self.end_time.strftime("%l:%M %P")
 	end
+	before_destroy { |record| Signup.destroy_all "event_id = #{record.id}"   }
 end

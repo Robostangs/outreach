@@ -5,7 +5,7 @@ class Signup < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :event
-
+  validates :event_id, :user_id, :presence => true
   def set_default_credits
     self.credits_earned = self.event.credits
   end

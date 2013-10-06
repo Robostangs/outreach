@@ -6,7 +6,7 @@ development:
   pool: 5
   template: template0
   username: postgres 
-  password: Wi2fRIMyY4GNFBCLn7MG 
+  password: TnDJilfIfgupv0qDZwV9 
 
 test:
   adapter: postgresql
@@ -16,7 +16,7 @@ test:
   pool: 5
   template: template0
   username: postgres
-  password: Wi2fRIMyY4GNFBCLn7MG 
+  password: TnDJilfIfgupv0qDZwV9 
 
 production:
   adapter: postgresql
@@ -26,4 +26,4 @@ production:
   pool: 5
   template: template0
   username: postgres
-  password: Wi2fRIMyY4GNFBCLn7MG
+  password: TnDJilfIfgupv0qDZwV9

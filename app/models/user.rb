@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 	before_create :correct_school_id
 
 	validates :school_id, :uniqueness => true
-
+	validates :email, :password, :password_confirmation, :first_name, :last_name, :school_id, :presence => true
   has_many :signups
   has_many :events, :through => :signups
   has_many :attendances
@@ -53,4 +53,13 @@ class User < ActiveRecord::Base
 		end
 		confirmed_credits
 	end	
+	after_create do
+		Meeting.all.each do |meeting|
+			# new meeting; create attendances for all users
+			new_attend = Attendance.new(:user_id => self.id, :meeting_id => meeting.id)
+			unless new_attend.save then return "ERROR: could not create new attendance" end
+		end 
+	end
+	before_destroy { |record| Signup.destroy_all "user_id=#{record.id}" }
+	before_destroy { |record| Attendance.destroy_all "user_id=#{record.id}" }
 end

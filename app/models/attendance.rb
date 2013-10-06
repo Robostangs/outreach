@@ -3,7 +3,8 @@ class Attendance < ActiveRecord::Base
 
 	belongs_to :user
 	belongs_to :meeting
-
+	validates :meeting_id, :user_id, :presence => true
+	validates :user_id, :uniqueness => {:scope => :meeting_id}
 	def present_time
 		self.out_time - self.in_time
 	end

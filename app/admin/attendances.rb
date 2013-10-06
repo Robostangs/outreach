@@ -5,6 +5,7 @@ ActiveAdmin.register Attendance do
   filter :present
 
   index do 
+    selectable_column
     column :meeting
     column "Meeting Date", :sortable => :event do |attend|
       attend.meeting.meeting_date.strftime("%a, %b #{attend.meeting.meeting_date.day.ordinalize}, %Y")
@@ -52,6 +53,12 @@ ActiveAdmin.register Attendance do
         else "No"
         end
       end
+      row :in_time do
+	attendance.in_time.strftime("%l:%M %P")
+      end
+      row :out_time do
+	attendance.out_time.strftime("%l:%M %P")
+      end
     end
   end
 
@@ -65,9 +72,36 @@ ActiveAdmin.register Attendance do
 
   batch_action :absent do |selection|
     Attendance.find(selection).each do |attend| 
-      attend.preset = false
+      attend.present = false
       attend.save
     end
     redirect_to :back
   end
+  form do |f|
+    f.inputs "Attendance Details" do
+      f.input :meeting
+      f.input :user
+      f.input :present
+      f.input :in_time
+      f.input :out_time
+    end
+    f.actions
+  end
+        action_item do
+                link_to 'Upload Attendance', :action => 'upload_attend'
+        end
+
+        collection_action :upload_attend do
+                render "admin/meetings/upload_attend"
+        end
+
+        collection_action :import_attend, :method => :post do
+                error = CsvDb.import_meeting(params[:dump][:file])
+                unless error == nil || error == ''
+                        flash[:error] = error
+                        redirect_to :action => :index
+                else
+                        redirect_to :action => :index, :notice => "Upload successful."
+                end
+        end
 end
