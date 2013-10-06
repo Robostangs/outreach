@@ -5,11 +5,9 @@ class CsvDb
 		def import_meeting(csv_data)
 			csv_file = csv_data.read
 			csv_array = CSV.parse(csv_file)
-			meeting_upload = Meeting.new
 			csv_cols = Hash.new
 			new_date = true
 			messages = ""
-
 			csv_array.each_with_index do |row, i|
 				if i == 0 
 					# column headers row
@@ -22,20 +20,19 @@ class CsvDb
 						end
 					end
 				elsif i == 1
-					# set meeting date
 					date = Date.strptime(row[csv_cols[:date]], '%m/%d/%Y')
 					if Meeting.find_by_meeting_date(date) == nil then
+						meeting_upload = Meeting.new
 						meeting_upload.meeting_date = Date.strptime(row[csv_cols[:date]], '%m/%d/%Y')
 						unless meeting_upload.save then return "ERROR: could not save new meeting" end
 					else 
-						# meeting exists
-						new_date = false
+					# meeting exists
 						meeting_upload = Meeting.find_by_meeting_date(date)
 						messages << "meeting with date #{date} already exists"
 					end
-
-					unless new_date
-						User.all.each do |user|
+					user = User.find_by_school_id(row[csv_cols[:school_id]])					
+					User.all.each do |user|
+						unless Attendance.find_by_user_id_and_meeting_id(user.id, meeting_upload.id)
 							# new meeting; create attendances for all users
 							new_attend = Attendance.new(:user_id => user.id, :meeting_id => meeting_upload.id)
 							unless new_attend.save then return "ERROR: could not create new attendance" end
@@ -43,7 +40,6 @@ class CsvDb
 					end
 
 					# this row contains user data as well, process
-					user = User.find_by_school_id(row[csv_cols[:school_id]])
 					unless user == nil 
 						attend = user.attendances.find_by_meeting_id(meeting_upload.id)
 						attend.present = true
@@ -71,4 +67,5 @@ class CsvDb
 		end
 	end
 end
+
 

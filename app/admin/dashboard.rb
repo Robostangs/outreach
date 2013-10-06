@@ -5,8 +5,8 @@ ActiveAdmin.register_page "Dashboard" do
   content :title => proc{ I18n.t("active_admin.dashboard") } do
     div :class => "blank_slate_container", :id => "dashboard_default_message" do
       span :class => "blank_slate" do
-        span I18n.t("active_admin.dashboard_welcome.welcome")
-        small I18n.t("active_admin.dashboard_welcome.call_to_action")
+        span "&#20320;&#22909;&#65281;&#27426;&#36814;&#24744;&#21040;&#20116;&#22235;&#20843;&#38431;&#25511;&#21046;&#20013;&#24515;&#65281;".html_safe 
+        small "Testing is the future, and the future starts with you."
       end
     end
 

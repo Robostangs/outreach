@@ -30,12 +30,16 @@
   <%= pending_credits %>
   <br>
 
-  <b> Total Credits: </b>
+  <b> Predicted Credits: </b>
   <%= (pending_credits + confirmed_credits) %>
   <br>
 <p>
 
 <p> 
+	<b> Meetings Attended: </b>
+	<%= @user.meetings_attended %>
+	<br>
+
 	<b> Meeting Attendance: </b>
 	<%= @user.meeting_attendance %> %
 	<br>
@@ -68,9 +72,9 @@
 			<% @user.signups.each do |signup| %>
 				<tr>
 					<td class="event_title"><%= link_to signup.event.title, signup.event %></td>
-					<td class="event_date"><%= signup.event.event_date %></td>
-					<td class="event_time"><%= signup.event.start_time.strftime("%l:%m %p") %></td>
-					<td class="event_time"><%= signup.event.end_time.strftime("%l:%m %p") %></td>
+					<td class="event_date"><%= signup.event.event_date.strftime("%a, %b #{signup.event.event_date.day.ordinalize}, %Y") %></td>
+					<td class="event_time"><%= signup.event.start_time.strftime("%l:%M %P") %></td>
+					<td class="event_time"><%= signup.event.end_time.strftime("%l:%M %P") %></td>
 					<td class="event_credits"><%= signup.credits_earned %></td>
 					<% if signup.confirmed %>
 						<td> Yes </td>

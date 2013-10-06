@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Robostangs Outreach</title>
+  <title>Robostangs Network</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -21,7 +21,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
-			<a class="brand">Robostangs</a>
+			<a href="/" class="brand">Robostangs</a>
 			<div class="nav-collapse">
 				<ul class="nav">
 					<% if user_signed_in? %>
@@ -47,7 +47,7 @@
 		</div>
 	</div>
 </div>
-	<div style="margin-left:auto; margin-right:auto" >
+	<div style="margin-left:auto; margin-right:auto; margin-top:10px;" >
 		<%= yield %>
 	</div>
 

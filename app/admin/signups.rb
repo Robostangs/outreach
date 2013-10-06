@@ -1,4 +1,5 @@
 ActiveAdmin.register Signup do
+  menu :priority => 5
   filter :event
   filter :user
   filter :confirmed
@@ -6,10 +7,10 @@ ActiveAdmin.register Signup do
   index do 
     selectable_column
     column :event, :sortable => :event
-    column "Event Date", :sortable => :event do |signup|
-      signup.event.event_date
+    column "Event Date" do |signup|
+      signup.event.event_date.strftime("%a, %b #{signup.event.event_date.day.ordinalize}, %Y")
     end
-    column "Member", :sortable => :user do |signup|
+    column "User", :sortable => :user_id do |signup|
       signup.user.full_name
     end
     column :credits_earned
@@ -27,7 +28,7 @@ ActiveAdmin.register Signup do
         signup.event
       end
       row :event_date do
-        signup.event.event_date
+        signup.event.event_date.strftime("%A, %B #{signup.event.event_date.day.ordinalize}, %Y")
       end
       row :description do
         signup.event.description

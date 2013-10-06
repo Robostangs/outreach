@@ -15,8 +15,8 @@ class User < ActiveRecord::Base
 
   has_many :signups
   has_many :events, :through => :signups
-	has_many :attendances
-	has_many :meetings, :through => :attendances
+  has_many :attendances
+  has_many :meetings, :through => :attendances
 
 	def correct_school_id
 		if self.school_id[0] != 'S' then self.school_id = 'S' + self.school_id end
@@ -29,12 +29,28 @@ class User < ActiveRecord::Base
 	def meeting_attendance
 		present_at = 0
 		self.attendances.each { |attend| if attend.present then present_at += 1 end }
-		(present_at / self.attendances.count.to_f) * 100
+		(present_at / meetings.count.to_f) * 100
 	end
+
+        def meetings_attended
+                present_at = 0
+                self.attendances.each { |attend| if attend.present then present_at += 1 end }
+                attended = present_at.to_s + "/" + sprintf("%g", meetings.count.to_f).to_s
+		attended
+        end
 
 	def missed_mandatory_meetings
 		missed = 0
 		self.attendances.each { |attend| if attend.mandatory and not attend.present then missed += 1 end }
 		missed
 	end
+	def credits
+		confirmed_credits = 0
+		self.signups.each do |signup|
+			if signup.confirmed then
+			confirmed_credits += signup.credits_earned
+			end
+		end
+		confirmed_credits
+	end	
 end

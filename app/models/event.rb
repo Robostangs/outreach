@@ -18,10 +18,10 @@ class Event < ActiveRecord::Base
   end
 
 	def nice_start_time
-		self.start_time.strftime("%l:%m %p")
+		self.start_time.strftime("%l:%M %P")
 	end
 
 	def nice_end_time
-		self.end_time.strftime("%l:%m %p")
+		self.end_time.strftime("%l:%M %P")
 	end
 end

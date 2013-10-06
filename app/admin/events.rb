@@ -1,10 +1,13 @@
 ActiveAdmin.register Event do
+	menu :priority => 4
 	filter :title
 	filter :event_date
 
 	index do 
 		column :title
-		column :event_date
+		column "Date", :sortable => :event_date do |event|
+			event.event_date.strftime("%a, %b #{event.event_date.day.ordinalize}, %Y")
+		end
 		column "Start time", :sortable => :start_time do |event|
 			event.nice_start_time
 		end
@@ -12,7 +15,7 @@ ActiveAdmin.register Event do
 			event.nice_end_time
 		end
 		column "Back-out deadline", :sortable => :deadline do |event|
-			event.deadline
+			event.deadline.strftime("%a, %b #{event.deadline.day.ordinalize}, %Y")
 		end
 		column :credits
 		column "Filled slots" do |event|
@@ -26,12 +29,17 @@ ActiveAdmin.register Event do
 		attributes_table do
 			row :title
 			row :description
-			row :event_date
+			row :event_date do
+				event.event_date.strftime("%A, %B #{event.event_date.day.ordinalize}, %Y")
+			end
 			row :start_time do
 				event.nice_start_time
 			end
 			row :end_time do
 				event.nice_end_time
+			end
+			row :deadline do
+				event.deadline.strftime("%A, %B #{event.deadline.day.ordinalize}, %Y")
 			end
 			row :credits
 			row :slots do

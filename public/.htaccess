@@ -1,0 +1,7 @@
+RewriteEngine On
+Options +FollowSymLinks -Indexes
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} !^www\.robostangs\.net [NC]
+RewriteRule ^(.*)$ https://www.robostangs.net/$1 [R=301,L]
+ErrorDocument 404 /
+ErrorDocument 403 /

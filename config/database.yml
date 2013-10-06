@@ -1,24 +1,29 @@
 development:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  database: db/development.frm
+  adapter: postgresql
+  encoding: unicode
+  database: development
+  host: localhost
   pool: 5
-  username: root
-  password: sql4days
-  timeout: 5000
+  template: template0
+  username: postgres 
+  password: Wi2fRIMyY4GNFBCLn7MG 
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
 test:
-  adapter: sqlite3
-  database: db/test.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: test
+  host: localhost
   pool: 5
-  timeout: 5000
+  template: template0
+  username: postgres
+  password: Wi2fRIMyY4GNFBCLn7MG 
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: production
+  host: localhost
   pool: 5
-  timeout: 5000
+  template: template0
+  username: postgres
+  password: Wi2fRIMyY4GNFBCLn7MG

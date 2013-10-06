@@ -22,9 +22,9 @@
 		<% @events.each do |event| %>
 			<tr>
 			<td><%= link_to event.title, event %></td>
-			<td><%= event.event_date %></td>
-			<td><%= event.start_time.strftime("%l:%m %p") %></td>
-			<td><%= event.end_time.strftime("%l:%m %p") %></td>
+			<td><%= event.event_date.strftime("%a, %b #{event.event_date.day.ordinalize}, %Y") %></td>
+			<td><%= event.start_time.strftime("%l:%M %P") %></td>
+			<td><%= event.end_time.strftime("%l:%M %P") %></td>
 			<td><%= event.credits %>
 			<td><%= event.slots_left %>/<%= event.max_slots %></td>
 			</tr>

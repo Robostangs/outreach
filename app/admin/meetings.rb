@@ -1,26 +1,31 @@
 ActiveAdmin.register Meeting do
-	config.clear_action_items!
+	menu :priority => 6 
+	filter :meeting_date
+	filter :mandatory
 
 	index do 
-		column :meeting_date
-		column :day_of_the_week
-=begin
-		column "Day of the Week" do |meeting|
-			meeting.day_of_the_week
+		column "Date", :sortable => :meeting_date do |meeting|
+			meeting.meeting_date.strftime("%A, %B #{meeting.meeting_date.day.ordinalize}, %Y")
 		end
-=end
 		column :description
-		column "Mandatory?", :sortable => :mandatory do |meeting|
+		column "Mandatory", :sortable => :mandatory do |meeting|
 			if meeting.mandatory then "Yes"
 			else "No"
 			end
+		end
+                column :number_of_attendees do |meeting|
+                        count = 0
+                        meeting.attendances.each { |attend| if attend.present then count += 1 end }
+                        count
 		end
 		default_actions
 	end
 
 	show do |meeting|
 		attributes_table do 
-			row :meeting_date
+			row :meeting_date do
+	                        meeting.meeting_date.strftime("%A, %B #{meeting.meeting_date.day.ordinalize}, %Y")
+			end
 			row :description
 			row :mandatory do
 				if meeting.mandatory then "Yes"
@@ -32,11 +37,15 @@ ActiveAdmin.register Meeting do
 				meeting.attendances.each { |attend| if attend.present then count += 1 end }
 				count
 			end
+			row :members_attended do
+                                people = ""
+				meeting.attendances.each { |attend| if attend.present then people = attend.user.full_name + "<br />" + people end }
+				people.html_safe
+			end
 		end
 	end
 
-
-	action_item :only => :index do
+	action_item do
 		link_to 'Upload Attendance', :action => 'upload_attend'
 	end
 
